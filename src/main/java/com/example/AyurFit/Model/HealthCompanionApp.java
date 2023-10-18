@@ -1,14 +1,14 @@
-package Model;
+package com.example.AyurFit.Model;
 
 public class HealthCompanionApp {
-    String EarlyDetection;
-    String Prevention;
-    String Ayurveda;
-    String PersonalGuidance;
-    String HolisticCare;
-    String HealthPlans;
-    String Motivation;
-    String SelfLearning;
+    private String EarlyDetection;
+    private String Prevention;
+    private String Ayurveda;
+    private String PersonalGuidance;
+    private String HolisticCare;
+    private String HealthPlans;
+    private String Motivation;
+    private String SelfLearning;
 
     public HealthCompanionApp(String earlyDetection, String prevention, String ayurveda, String personalGuidance, String holisticCare, String healthPlans, String motivation, String selfLearning) {
         EarlyDetection = earlyDetection;
