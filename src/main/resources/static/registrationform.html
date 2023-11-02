@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-10">
+    <title>Registration Form</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+           background-image:url("background2.jpeg"); /* Replace with your image file path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 65vh;
+            font-family: Georgia, serif;
+            font-weight: bold;
+            font-stretch: ultra-expanded;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+           // background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #191970;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        select {
+            height: 38px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .success-message {
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1 class="mt-5">Registration Form</h1>
+
+    <form id="registrationForm" action="/api/registration/createMember" method="post">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="emailId">Email:</label>
+            <input type="email" class="form-control" id="emailId" name="emailId" required>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" class="form-control" id="age" name="age" required>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select class="form-control" id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="height">Height (cm):</label>
+            <input type="number" class="form-control" id="height" name="height" required>
+        </div>
+
+        <div class="form-group">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" class="form-control" id="weight" name="weight" required>
+        </div>
+
+        <div class="form-group">
+            <label for="contactNumber">Contact Number:</label>
+            <input type="text" class="form-control" id="contactNumber" name="contactNumber" required>
+        </div>
+
+
+        <input type="submit" class="btn btn-primary" value="Register" onclick="window.location.href= 'login.html' ">
+    </form>
+    <br>
+    <br>
+    <br>
+
+</div>
+
+<script>
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            // Gather form data
+            const formData = new FormData(document.getElementById('registrationForm'));
+
+            // Convert the formData to a JSON object
+            const jsonFormData = {};
+            formData.forEach((value, key) => {
+                jsonFormData[key] = value;
+            });
+
+            // Send a POST request
+            fetch('/api/registration/createMember', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonFormData),
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data); // You can handle the response here
+                // Show the registration success message and hide the form
+                document.getElementById('registrationForm').style.display = 'none';
+                document.getElementById('registrationSuccessMessage').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+                   });
+    </script>
+</body>
+
+</html>

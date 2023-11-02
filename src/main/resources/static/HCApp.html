@@ -88,20 +88,54 @@
             align-items: center;
             padding:20px;
         }
-        .login-container {
-            margin-left: auto; /* Push to the right */
-            width: 500px; /* Set a fixed width */
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-        }
-        .login-message {
-            display: none;
-            color: green;
-        }
+
         .row-container {
             display: flex;
             justify-content: space-between;
+        }
+         .testimonial-slideshow {
+            display: flex;
+            flex-direction: column;
+        }
+         .testimonial {
+         margin-left: 5px;
+          text-align: left;
+         font-family: Snell Roundhand, cursive;
+         font-style: italic;
+            display: none;
+           padding: 20px;
+           margin: 10px;
+           // border: 1px solid #ddd;
+            //border-radius: 5px;
+            animation: fade 6s;
+        }
+
+        .testimonial h2 {
+
+             text-align: left;
+             color: #A52A2A;
+           // font-size: 18px;
+            margin: 0;
+        }
+
+        .testimonial p {
+            //font-size: 15px;
+            margin: 10px 0;
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 0.5;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -142,23 +176,49 @@
             <p>"To enjoy the glow of good health, you must exercise."</p>
         </div>
     </div>
-    <div class="login-container">
-        <div class="container">
-            <h2 class="text-center">Login User</h2>
-            <form>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <button type="submit">Login</button>
-            </form>
-            <p class="login-message" id="login-success-message">Login successful</p>
+
+    <div class="testimonial-slideshow">
+
+        <div class="testimonial"  >
+            <h2 class="text-center">Testimonials</h2>
+            <p>"The holistic health app has been a game-changer for me.
+                <br>
+                It helped me manage stress, improve my sleep, and enhance my overall well-being.
+                <br>
+                I can't imagine my daily routine without it now!"
+                <br>
+                <br>
+                <br>
+                "As a busy professional, I used to neglect my health.
+                <br>
+                This app made it easy for me to incorporate holistic practices into my life.
+                <br>
+                I've lost weight, reduced anxiety, and even improved my relationships.
+                <br>
+                Highly recommended!"
+            </p>
         </div>
+        <div class="testimonial">
+            <h2 class="text-center">Testimonials</h2>
+            <p>"I love the mindfulness exercises and nutrition guidance in this app.
+                <br>
+                It's like having a personal wellness coach in my pocket.
+                <br>
+                My energy levels are through the roof, and I'm feeling more balanced and centered."
+                <br>
+                <br>
+                <br>
+                "I'm a busy mom, and this app has been a blessing.
+                <br>
+                It offers quick workouts, healthy recipes, and even tips for mindfulness.
+                <br>
+                My family has benefited from it as well. A must-have for anyone!"
+            </p>
+        </div>
+        <!-- Add more testimonials as needed -->
     </div>
+
 </div>
-<br>
 <br>
 <br>
 <br>
@@ -183,5 +243,21 @@
     <br>
     " Well-Being Warriors "
 </div>
+
+<script>
+    let testimonials = document.querySelectorAll('.testimonial');
+    let currentIndex = 0;
+
+    function showTestimonial() {
+        testimonials[currentIndex].style.display = 'none';
+        currentIndex = (currentIndex + 1) % testimonials.length;
+        testimonials[currentIndex].style.display = 'block';
+        setTimeout(showTestimonial, 5000); // 5 seconds per testimonial
+    }
+
+    testimonials[currentIndex].style.display = 'block';
+    setTimeout(showTestimonial, 5000); // Start the slideshow
+</script>
+
 </body>
 </html>
